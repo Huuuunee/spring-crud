@@ -8,6 +8,7 @@ import com.project.crud.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -22,6 +23,11 @@ public class MemberService {
         }
         Member user = memberDto.toEntity();
         memberRepository.save(user);
+    }
+
+    public List<Member> findAll(){
+        System.out.println(memberRepository.findAll());
+        return memberRepository.findAll();
     }
 }
 
