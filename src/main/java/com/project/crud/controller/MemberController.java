@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RequiredArgsConstructor
 @RestController
 public class MemberController {
@@ -27,5 +28,10 @@ public class MemberController {
     @GetMapping("/find/id")
     public Member findByUserId(@RequestParam String userId){
         return memberService.findByUserId(userId);
+    }
+
+    @DeleteMapping()
+    public void deleteUser(@RequestBody MemberDto member){
+        memberService.deleteUser(member);
     }
 }

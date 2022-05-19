@@ -36,6 +36,14 @@ public class MemberService {
         }
         return memberRepository.findByUserId(userId);
     }
+
+    public void deleteUser(MemberDto memberDto){
+        if(!memberRepository.existsByUserId(memberDto.getUserId())){
+            throw new CustomException(ErrorCode.NONE_MEMBER);
+        }
+        Member member = memberRepository.findByUserId(memberDto.getUserId());
+        memberRepository.delete(member);
+    }
 }
 
 
