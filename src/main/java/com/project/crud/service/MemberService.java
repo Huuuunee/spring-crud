@@ -18,7 +18,7 @@ public class MemberService {
 
     public void signup(MemberDto memberDto){
         if(memberRepository.existsByUserId(memberDto.getUserId())) {
-            throw  new CustomException(ErrorCode.MEMBER_ALREADY);
+            throw new CustomException(ErrorCode.MEMBER_ALREADY);
         }
         Member user = memberDto.toEntity();
         memberRepository.save(user);
