@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 public enum ErrorCode {
     // ***Member***
     MEMBER_ALREADY(HttpStatus.CONFLICT, "이미 가입된 유저입니다."),
+    NONE_MEMBER(HttpStatus.NOT_FOUND, "없는 유저입니다."),
     ;
     private final HttpStatus httpStatus;
     private String message;

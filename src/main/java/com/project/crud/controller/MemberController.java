@@ -4,10 +4,7 @@ import com.project.crud.dto.MemberDto;
 import com.project.crud.entity.Member;
 import com.project.crud.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,10 @@ public class MemberController {
     @GetMapping()
     public List<Member> findAll(){
         return memberService.findAll();
+    }
+
+    @GetMapping("/find/id")
+    public Member findByUserId(@RequestParam String userId){
+        return memberService.findByUserId(userId);
     }
 }

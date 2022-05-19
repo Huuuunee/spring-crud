@@ -29,6 +29,13 @@ public class MemberService {
         System.out.println(memberRepository.findAll());
         return memberRepository.findAll();
     }
+
+    public Member findByUserId(String userId){
+        if(!memberRepository.existsByUserId(userId)){
+            throw new CustomException(ErrorCode.NONE_MEMBER);
+        }
+        return memberRepository.findByUserId(userId);
+    }
 }
 
 
