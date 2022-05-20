@@ -1,5 +1,6 @@
 package com.project.crud.service;
 
+import com.project.crud.dto.MemberDeleteDto;
 import com.project.crud.dto.MemberDto;
 import com.project.crud.entity.Member;
 import com.project.crud.repository.MemberRepository;
@@ -8,6 +9,7 @@ import com.project.crud.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Slf4j
@@ -26,22 +28,18 @@ public class MemberService {
     }
 
     public List<Member> findAll(){
-        System.out.println(memberRepository.findAll());
         return memberRepository.findAll();
     }
 
-    public Member findByUserId(String userId){
-        if(!memberRepository.existsByUserId(userId)){
-            throw new CustomException(ErrorCode.NONE_MEMBER);
-        }
-        return memberRepository.findByUserId(userId);
+    public Member findMemberByName(String name){
+        Member member = memberRepository.findMemberByName(name)
+                .orElseThrow(()->new CustomException(ErrorCode.NONE_MEMBER));
+        return member;
     }
 
-    public void deleteUser(MemberDto memberDto){
-        if(!memberRepository.existsByUserId(memberDto.getUserId())){
-            throw new CustomException(ErrorCode.NONE_MEMBER);
-        }
-        Member member = memberRepository.findByUserId(memberDto.getUserId());
+    public void deleteMember(MemberDeleteDto memberDeleteDto){
+        Member member = memberRepository.findMemberByName(memberDeleteDto.getName())
+                .orElseThrow(()-> new CustomException(ErrorCode.NONE_MEMBER));
         memberRepository.delete(member);
     }
 }

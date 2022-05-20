@@ -1,5 +1,6 @@
 package com.project.crud.controller;
 
+import com.project.crud.dto.MemberDeleteDto;
 import com.project.crud.dto.MemberDto;
 import com.project.crud.entity.Member;
 import com.project.crud.service.MemberService;
@@ -25,13 +26,13 @@ public class MemberController {
         return memberService.findAll();
     }
 
-    @GetMapping("/find/id")
-    public Member findByUserId(@RequestParam String userId){
-        return memberService.findByUserId(userId);
+    @GetMapping("/find")
+    public Member findByName(@RequestParam String name){
+        return memberService.findMemberByName(name);
     }
 
     @DeleteMapping()
-    public void deleteUser(@RequestBody MemberDto member){
-        memberService.deleteUser(member);
+    public void deleteUser(@RequestBody MemberDeleteDto memberDeleteDto){
+        memberService.deleteMember(memberDeleteDto);
     }
 }
