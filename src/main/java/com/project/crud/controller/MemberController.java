@@ -2,6 +2,7 @@ package com.project.crud.controller;
 
 import com.project.crud.dto.MemberDeleteDto;
 import com.project.crud.dto.MemberDto;
+import com.project.crud.dto.MemberUpdateDto;
 import com.project.crud.entity.Member;
 import com.project.crud.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,12 @@ public class MemberController {
     }
 
     @DeleteMapping()
-    public void deleteUser(@RequestBody MemberDeleteDto memberDeleteDto){
+    public void deleteMember(@RequestBody MemberDeleteDto memberDeleteDto){
         memberService.deleteMember(memberDeleteDto);
+    }
+
+    @PutMapping()
+    public void updateMember(@RequestBody MemberUpdateDto memberUpdateDto){
+        memberService.updateMember(memberUpdateDto);
     }
 }

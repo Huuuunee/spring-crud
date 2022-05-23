@@ -1,9 +1,7 @@
 package com.project.crud.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.project.crud.dto.MemberUpdateDto;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,4 +21,11 @@ public class Member {
     private String password;
     private String name;
     private Integer age;
+
+    public void update(MemberUpdateDto memberUpdateDto){
+        this.userId = memberUpdateDto.getUserId();
+        this.name = memberUpdateDto.getName();
+        this.password = memberUpdateDto.getPassword();
+        this.age = memberUpdateDto.getAge();
+    }
 }

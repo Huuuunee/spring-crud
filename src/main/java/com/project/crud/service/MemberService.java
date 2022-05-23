@@ -2,6 +2,7 @@ package com.project.crud.service;
 
 import com.project.crud.dto.MemberDeleteDto;
 import com.project.crud.dto.MemberDto;
+import com.project.crud.dto.MemberUpdateDto;
 import com.project.crud.entity.Member;
 import com.project.crud.repository.MemberRepository;
 import com.project.crud.global.exception.CustomException;
@@ -9,6 +10,7 @@ import com.project.crud.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -41,6 +43,13 @@ public class MemberService {
         Member member = memberRepository.findMemberByName(memberDeleteDto.getName())
                 .orElseThrow(()-> new CustomException(ErrorCode.NONE_MEMBER));
         memberRepository.delete(member);
+    }
+
+    @Transactional
+    public void updateMember(MemberUpdateDto memberUpdateDto){
+        Member member = memberRepository.findMemberByName(memberUpdateDto.getName())
+                .orElseThrow(() -> new CustomException(ErrorCode.NONE_MEMBER));
+        member.update(memberUpdateDto);
     }
 }
 
